@@ -108,9 +108,30 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
-
+  arr.sort((a, b) => {
+    if (a.lastName.toUpperCase() === b.lastName.toUpperCase() && a.firstName.toUpperCase() === b.firstName.toUpperCase()) {
+      return a.age - b.age;
+    }
+    else if (a.lastName.toUpperCase() === b.lastName.toUpperCase()) {
+      if (a.firstName.toUpperCase() < b.firstName.toUpperCase()) {
+        return -1;
+      }
+      else if (a.firstName.toUpperCase() > b.firstName.toUpperCase()) {
+        return 1;
+      }
+    }
+    else {
+      if (a.lastName.toUpperCase() < b.lastName.toUpperCase()) {
+        return -1;
+      }
+      else if (a.lastName.toUpperCase() > b.lastName.toUpperCase()) {
+        return 1;
+      }
+    }
+  }
+  )
+  return arr;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
 Write a function named sortMeetingsByDay that takes in an array of objects, each of which represents a meeting happening a particular day of the week, with a particular start time and end time.
