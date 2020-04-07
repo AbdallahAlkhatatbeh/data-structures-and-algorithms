@@ -73,10 +73,12 @@ let characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
-  houses=Object.values(arr.name);
+  arr.forEach(element => {
+    houses.push(element.house);
+
+  });
   return houses;
 };
-
 /*------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
@@ -90,9 +92,24 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
+  // Solution code here...arr = Object.values(arr);
+  let torf;
+  arr.forEach(element =>{
+    if(element.name === character){
+      if(element.children.length >=1){
+        torf= true;
+      }else{
+        torf= false;}
+
+    }
+  });
+
+  return torf;
 
 };
+
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -104,7 +121,19 @@ The input and output of this function are the same as the input and output from 
 
 const hasChildrenEntries = (arr, character) => {
   // Solution code here...
+  arr = Object.entries(arr);
+  let torf;
+  arr.forEach(element =>{
+    if(character === element[1].name){
+      if(element[1].children.length >=1){
+        torf= true;
+      }else{
+        torf= false;}
+    }
+  });
+  return torf;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -114,7 +143,15 @@ Write a function named totalCharacters that takes in an array and returns the nu
 
 const totalCharacters = (arr) => {
   // Solution code here...
+  let count = 0;
+  arr.forEach(element => {
+    Object.values(element).forEach(value => {
+      if (value){count++;}
+    });
+  });
+  return count;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6 - Stretch Goal
