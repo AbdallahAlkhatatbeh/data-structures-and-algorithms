@@ -2,75 +2,86 @@
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1
-
 Write a function named forLoopTwoToThe that, given an array of integers as input, iterates over the array and returns a new array. The returned array should contain the result of raising 2 to the power of the original input element.
-
 You may choose to complete this challenge using a for loop, for...in syntax, or for...of syntax.
-
 For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and 2 ^ 3 = 8.
 ------------------------------------------------------------------------------------------------ */
 
 const forLoopTwoToThe = (arr) => {
   // Solution code here...
-  const x= Math.pow(arr,2);
-  return(x);
+  let a = [];
+  for (let i = 0; i < arr.length; i++) {
+    a.push(Math.pow(2,arr[i]));
+  }
+  return a;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
-
 Write a function named forEachTwoToThe that produces the same output as your forLoopTwoToThe function from challenge 1, but uses forEach instead of a for loop.
 ------------------------------------------------------------------------------------------------ */
 
 const forEachTwoToThe = (arr) => {
   // Solution code here...
+  let a = [];
+  arr.forEach(element=>{
+    a.push(Math.pow(2,element));
+  });
+  return a;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
-
 Write a function named mapTwoToThe that produces the same output as your forLoopTwoToThe function from challenge 1 and your forEachTwoToThe function from challenge 2, but uses map instead of a for loop or forEach.
 ------------------------------------------------------------------------------------------------ */
 
 const mapTwoToThe = (arr) => {
   // Solution code here...
+  let a = arr.map( (value)=>{
+    return Math.pow(2,value);
+  });
+  return a;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
-
 Write a function named charCode that, given an array of letters as an input, uses map to return a new array where each element is the result of the `charCodeAt` method on the original array element.
-
 Read the MDN documentation on String.charCodeAt() if necessary.
-
 For example: charCode(['h','i']) returns [104, 105].
 ------------------------------------------------------------------------------------------------ */
 
 const charCode = (arr) => {
   // Solution code here...
+
+  let a= arr.map((value)=>{
+    return value.charCodeAt();
+  });
+  return a;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
-
 Write a function that, given an array of numbers as input, uses map to return a new array where each element is either the string "even" or the string "odd", based on each value.
-
 If any element in the array is not a number, the resulting array should have the string "N/A" in its place.
-
 For example: evenOdd([1,2,3]) returns ['odd','even','odd'].
 ------------------------------------------------------------------------------------------------ */
 
 const evenOdd = (arr) => {
   // Solution code here...
+  let a = arr.map((value) =>{
+    if(typeof(value)==='string'){
+      return 'N/A';
+    }
+    else if (value % 2 ===0 ){ return 'even';}
+    else {return 'odd';}
+  });
+  return a;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
-
 Use the snorlaxAbilities data, below, for this challenge.
-
 Write a function named extractAbilities that, given the array of abilities, uses map to create an array containing only the ability name.
-
 Note: Because this function is expecting the array of abilities, it will be invoked as:
 extractAbilities(snorlaxAbilities.abilities)
 ------------------------------------------------------------------------------------------------ */
@@ -108,17 +119,18 @@ const snorlaxAbilities = {
 
 const extractAbilities = (arr) => {
   // Solution code here...
+  let names = arr.map( (value) =>{
+    return value.ability.name;
+
+  });
+  return names;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
-
 Use the snorlaxStats data, below, for this challenge.
-
 Write a function named extractStats that, given an array of stats, uses map to return an array of objects containing the stat name and the total.
-
 The total should be the sum of the effort and the baseStat.
-
 Here is an example of a single array element: { name: 'speed', total: 35 }
 ------------------------------------------------------------------------------------------------ */
 
@@ -155,17 +167,17 @@ const snorlaxStats = {
 
 const extractStats = (arr) => {
   // Solution code here...
+  let powers = arr.map((value)=>{
+    return {'name':value.stat.name ,'total': value.effort+value.baseStat};
+  });
+  return powers;
 };
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
-
 All the code below will verify that your functions are working to solve the challenges.
-
 DO NOT CHANGE any of the below code.
-
 Run your tests from the console: jest challenges-07.test.js
-
 ------------------------------------------------------------------------------------------------ */
 
 describe('Testing challenge 1', () => {
